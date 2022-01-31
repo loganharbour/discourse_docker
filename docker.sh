@@ -457,6 +457,9 @@ do_install() {
 				echo "Packages for RHEL are currently only available for s390x."
 				exit 1
 			fi
+      if [ "$lsb_dist" == "rocky" ]; then
+        lsb_dist="centos"
+      fi
 			yum_repo="$DOWNLOAD_URL/linux/$lsb_dist/$REPO_FILE"
 			if ! curl -Ifs "$yum_repo" > /dev/null; then
 				echo "Error: Unable to curl repository file $yum_repo, is it valid?"
